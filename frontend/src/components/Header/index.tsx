@@ -1,16 +1,37 @@
+import Image from "next/image";
 import Link from "next/link";
 
 export default function Header() {
   return (
-    <header className="flex mt-10 justify-center">
-      <nav className="flex gap-10">
-        <Link href={"/"}>Logo</Link>
-        <Link href={"menu/"}>Menu</Link>
-        <span>Rewards</span>
-        <span>Gift Cards</span>
-        <span>Find a store</span>
-        <span>Sign in</span>
-        <span>Join now</span>
+    <header>
+      <nav className="flex m-5 h-20 gap-10 justify-around">
+        <div className="">
+          <Link href={"/"}>
+            <Image
+              height={150}
+              width={50}
+              src={"/images/logo.png"}
+              alt="Logo"
+            />
+          </Link>
+        </div>
+        <div className="flex gap-5 justify-start pt-3">
+          <Link href={"/"} className="font-semibold hover:text-green-800">
+            HOME
+          </Link>
+          <Link className="font-semibold hover:text-green-800" href={"menu/"}>
+            MENU
+          </Link>
+          <span className="font-semibold hover:text-green-800">REWARDS</span>
+          <span className="font-semibold hover:text-green-800">GIFT CARDS</span>
+        </div>
+        <div className="flex h-20 w- gap-5 justify-center content-center pt-3">
+          <span className="font-semibold hover:text-green-800">
+            Find a store
+          </span>
+          <span className="font-semibold hover:text-green-800">Sign in</span>
+          <span className="font-semibold hover:text-green-800">Join now</span>
+        </div>
       </nav>
     </header>
   );
