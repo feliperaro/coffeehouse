@@ -1,6 +1,7 @@
 "use client";
 
 import Header from "@/components/Header";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 
 const URL_API = "http://127.0.0.1:1337/api";
@@ -8,7 +9,7 @@ const URL_API = "http://127.0.0.1:1337/api";
 export default function MenuPage() {
   const [menu, setMenu] = useState<any>([]);
   const [drinks, setDrinks] = useState<any>([]);
-  const [foods, setFoods] = useState();
+  const [foods, setFoods] = useState<any>([]);
 
   const getMenu = async () => {
     await fetch(`${URL_API}/menu`)
@@ -36,41 +37,83 @@ export default function MenuPage() {
   return (
     <>
       <Header />
-      <main className="flex w-auto h-full min-h-screen flex-col items-center justify-start">
-        <h1 className="font-extrabold">Menu</h1>
-        <div className="flex flex-col h-4/5 w-max mt-5">
-          <h2 className="font-bold w-auto text-center">Drinks</h2>
-          {drinks.length > 0 ? (
-            <div className="flex flex-col h-full w-full">
-              <ul className="border-x border-y border-pink-500 flex flex-col gap-5 h-full w-full">
+      <main className="flex w-auto h-full min-h-screen">
+        <div className="w-full flex mt-10 gap-16">
+          <nav className="flex flex-col gap-5 ml-12 w-40 ">
+            <h3 className="font-bold w-auto text-center">Drinks</h3>
+            {drinks.length !== 0 && (
+              <ul className="flex flex-col gap-1 h-auto mb-5 w-full">
                 {drinks.map((type: any) => (
-                  <li className="h-auto w-auto" key={type.id}>
-                    <span>{type.name}</span>
-                    {type.subCategories !== 0 && (
-                      <ul className="border-x border-y border-green-500 gap-5 flex flex-col h-full w-full">
-                        {type.subCategories.map((subCategory: any) => (
-                          <li className="h-auto w-auto" key={subCategory.id}>
-                            <span>{subCategory.name}</span>
-                            {subCategory.items !== 0 && (
-                              <ul className="border-x border-y gap-1 border-red-500 ">
-                                {subCategory.items.map((item: any) => (
-                                  <li className="h-auto w-auto" key={item.id}>
-                                    <span>{item.name}</span>
-                                  </li>
-                                ))}
-                              </ul>
-                            )}
-                          </li>
-                        ))}
-                      </ul>
-                    )}
+                  <li className="h-auto w-auto gap-1" key={type.id}>
+                    <Link
+                      className="hover:text-green-800 hover:font-bold"
+                      href={`items/drinks/${type.id}`}
+                    >
+                      {type.name}
+                    </Link>
                   </li>
                 ))}
               </ul>
-            </div>
-          ) : (
-            <p>Loading data...</p>
-          )}
+            )}
+
+            <h3 className="font-bold w-auto text-center">Foods</h3>
+            {foods.length !== 0 && (
+              <ul className="flex flex-col gap-1 h-full w-full">
+                {drinks.map((type: any) => (
+                  <li className="h-auto w-auto gap-1" key={type.id}>
+                    <Link
+                      className="hover:text-green-800 hover:font-bold"
+                      href={`items/drinks/${type.id}`}
+                    >
+                      {type.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </nav>
+          <div className="flex flex-col p-8 gap-5 h-full w-full">
+            <h1 className="font-extrabold ">Menu</h1>
+            <section className="h-full flex flex-col">
+              <h2 className="font-bold w-auto">Drinks</h2>
+              {drinks.length !== 0 && (
+                <ul className="border-y flex flex-wrap h-full mt-1 mb-5 w-full">
+                  {drinks.map((type: any) => (
+                    <li
+                      className="justify-center items-center flex h-auto w-1/2"
+                      key={type.id}
+                    >
+                      <Link
+                        className="hover:text-green-800 hover:font-bold"
+                        href={`items/drinks/${type.name}`}
+                      >
+                        {type.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+
+              <h2 className="font-bold w-auto">Food</h2>
+              {foods.length !== 0 && (
+                <ul className="flex flex-wrap h-full w-full">
+                  {foods.map((type: any) => (
+                    <li
+                      className="justify-center items-center flex h-auto w-1/2"
+                      key={type.id}
+                    >
+                      <Link
+                        className="hover:text-green-800 hover:font-bold"
+                        href={`items/foods/${type.name}`}
+                      >
+                        {type.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </section>
+          </div>
         </div>
       </main>
     </>
