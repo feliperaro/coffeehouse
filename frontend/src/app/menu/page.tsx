@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 const URL_API = "http://127.0.0.1:1337/api";
 
 export default function MenuPage() {
-  const [menu, setMenu] = useState<any>([]);
   const [drinks, setDrinks] = useState<any>([]);
   const [foods, setFoods] = useState<any>([]);
 
@@ -15,8 +14,6 @@ export default function MenuPage() {
     await fetch(`${URL_API}/menu`)
       .then((response) => response.json())
       .then((data) => {
-        setMenu(data);
-
         const drinksData =
           data.drinks.categories === undefined ? [] : data.drinks.categories;
         setDrinks(drinksData);
@@ -43,13 +40,13 @@ export default function MenuPage() {
             <h3 className="font-bold w-auto text-center">Drinks</h3>
             {drinks.length !== 0 && (
               <ul className="flex flex-col gap-1 h-auto mb-5 w-full">
-                {drinks.map((type: any) => (
-                  <li className="h-auto w-auto gap-1" key={type.id}>
+                {drinks.map((food: any) => (
+                  <li className="h-auto w-auto gap-1" key={food.id}>
                     <Link
                       className="hover:text-green-800 hover:font-bold"
-                      href={`items/drinks/${type.id}`}
+                      href={`/drinks/${food.id}`}
                     >
-                      {type.name}
+                      {food.name}
                     </Link>
                   </li>
                 ))}
@@ -59,13 +56,13 @@ export default function MenuPage() {
             <h3 className="font-bold w-auto text-center">Foods</h3>
             {foods.length !== 0 && (
               <ul className="flex flex-col gap-1 h-full w-full">
-                {drinks.map((type: any) => (
-                  <li className="h-auto w-auto gap-1" key={type.id}>
+                {foods.map((food: any) => (
+                  <li className="h-auto w-auto gap-1" key={food.id}>
                     <Link
                       className="hover:text-green-800 hover:font-bold"
-                      href={`items/drinks/${type.id}`}
+                      href={`/foods/${food.id}`}
                     >
-                      {type.name}
+                      {food.name}
                     </Link>
                   </li>
                 ))}
@@ -78,16 +75,16 @@ export default function MenuPage() {
               <h2 className="font-bold w-auto">Drinks</h2>
               {drinks.length !== 0 && (
                 <ul className="border-y flex flex-wrap h-full mt-1 mb-5 w-full">
-                  {drinks.map((type: any) => (
+                  {drinks.map((drink: any) => (
                     <li
                       className="justify-center items-center flex h-auto w-1/2"
-                      key={type.id}
+                      key={drink.id}
                     >
                       <Link
                         className="hover:text-green-800 hover:font-bold"
-                        href={`items/drinks/${type.name}`}
+                        href={`drinks/${drink.id}`}
                       >
-                        {type.name}
+                        {drink.name}
                       </Link>
                     </li>
                   ))}
@@ -97,16 +94,16 @@ export default function MenuPage() {
               <h2 className="font-bold w-auto">Food</h2>
               {foods.length !== 0 && (
                 <ul className="flex flex-wrap h-full w-full">
-                  {foods.map((type: any) => (
+                  {foods.map((food: any) => (
                     <li
                       className="justify-center items-center flex h-auto w-1/2"
-                      key={type.id}
+                      key={food.id}
                     >
                       <Link
                         className="hover:text-green-800 hover:font-bold"
-                        href={`items/foods/${type.name}`}
+                        href={`/foods/${food.id}`}
                       >
-                        {type.name}
+                        {food.name}
                       </Link>
                     </li>
                   ))}
