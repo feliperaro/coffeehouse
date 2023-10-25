@@ -11,7 +11,6 @@ module.exports = {
 
       const types = ["drinks", "foods"];
       for (const type of types) {
-        console.log("looking categories for type: ", type);
         const categories = await strapi.entityService.findMany(
           "api::category.category",
           {
