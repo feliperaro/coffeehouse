@@ -1,5 +1,4 @@
 // @ts-nocheck
-const { sanitize } = require("@strapi/utils");
 
 module.exports = {
   find: async (ctx) => {
