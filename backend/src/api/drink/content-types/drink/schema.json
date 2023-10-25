@@ -22,6 +22,19 @@
       "relation": "manyToOne",
       "target": "api::sub-category.sub-category",
       "inversedBy": "drinks"
+    },
+    "cover": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "description": {
+      "type": "text"
     }
   }
 }

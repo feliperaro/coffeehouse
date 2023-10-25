@@ -732,6 +732,8 @@ export interface ApiDrinkDrink extends Schema.CollectionType {
       'manyToOne',
       'api::sub-category.sub-category'
     >;
+    cover: Attribute.Media;
+    description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
