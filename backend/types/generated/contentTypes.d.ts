@@ -696,6 +696,7 @@ export interface ApiCategoryCategory extends Schema.CollectionType {
       'api::sub-category.sub-category'
     >;
     type: Attribute.Enumeration<['drinks', 'foods']>;
+    cover: Attribute.Media;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -770,6 +771,8 @@ export interface ApiFoodFood extends Schema.CollectionType {
       'manyToOne',
       'api::sub-category.sub-category'
     >;
+    cover: Attribute.Media;
+    description: Attribute.Text;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
