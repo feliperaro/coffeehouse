@@ -19,8 +19,13 @@ module.exports = {
                 $eq: type,
               },
             },
+            populate: ["sub_categories"],
           }
         );
+
+        console.log("categories:", categories);
+        const sub_categories = categories.sub_categories;
+        console.log("sub_categories: " + sub_categories);
 
         if (categories.length == 0) {
           continue;
