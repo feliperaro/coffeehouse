@@ -1,3 +1,4 @@
+const { values } = require("../../../../config/middlewares");
 const { getRandomItemFromArray } = require("../services/random-menu");
 
 module.exports = {
@@ -22,27 +23,13 @@ module.exports = {
           }
 
           let randomValue = getRandomItemFromArray(items);
+          console.log("randomValue", randomValue);
+
           randomMenu.push(randomValue);
-
-          for (const item of randomMenu) {
-            let valueExists = item.name === randomValue.name;
-            while (valueExists) {
-              items.splice(randomValue, 1);
-              randomMenu.splice(item, 1);
-
-              randomValue = getRandomItemFromArray(items);
-              valueExists = item.name === randomValue.name;
-
-              if (!valueExists) {
-                randomMenu.push(randomValue);
-                break;
-              }
-            }
-          }
+          console.log("randomMenu", randomMenu);
         }
       }
 
-      console.log("randomMenu", randomMenu);
       ctx.body = {
         randomMenu: randomMenu,
       };
@@ -51,6 +38,6 @@ module.exports = {
     } catch (error) {
       ctx.body = "error: " + error.message;
       ctx.status = 400;
-    }
+    } 
   },
 };
