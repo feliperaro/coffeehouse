@@ -1,4 +1,3 @@
-const { values } = require("../../../../config/middlewares");
 const { getRandomItemFromArray } = require("../services/random-menu");
 
 module.exports = {
@@ -38,6 +37,6 @@ module.exports = {
     } catch (error) {
       ctx.body = "error: " + error.message;
       ctx.status = 400;
-    } 
+    }
   },
 };
